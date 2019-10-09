@@ -66,5 +66,11 @@ export const Content = styled.div`
         color: ${lighten(0.4, '#777')};
       }
     }
+
+    > span {
+      color: rgba(255, 0, 0, 0.5);
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
   }
 `;
