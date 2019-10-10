@@ -43,7 +43,7 @@ export const Content = styled.div`
       width: 315px;
       height: 50px;
       border-radius: 4px;
-      background-color: #f94d6a;
+      background: #f94d6a;
       border: 0;
       color: #fff;
       font-weight: bold;
