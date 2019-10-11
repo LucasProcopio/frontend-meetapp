@@ -26,16 +26,21 @@ export const Content = styled.div`
     a {
       width: 172px;
       height: 42px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       border-radius: 4px;
       background-color: #f94d6a;
-      line-height: 42px;
       color: #fff;
       font-weight: bold;
-      text-align: center;
       transition: background 0.2s ease-in-out;
 
       &:hover {
         background: ${darken(0.2, '#f94d6a')};
+      }
+
+      > svg {
+        margin-right: 10px;
       }
     }
   }
@@ -58,14 +63,23 @@ export const Content = styled.div`
         border: 1px solid rgba(255, 255, 255, 0.2);
         transform: scaleX(1.01);
       }
-      > strong {
+
+      strong {
         color: #fff;
         font-size: 16px;
       }
 
-      > span {
+      span {
         color: #999;
         font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        > svg {
+          color: #fff;
+          margin-left: 10px;
+        }
       }
     }
   }
@@ -88,6 +102,7 @@ export const Loader = styled.div`
 
   svg {
     margin: 30px auto;
+    color: #fff;
     animation: ${rotate} 2s linear infinite;
   }
 `;

@@ -1,12 +1,22 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { darken, lighten } from 'polished';
 
 export const Wrapper = styled.div`
-  height: 100%;
+  min-height: 100%;
   background-image: linear-gradient(180deg, #22202c 0%, #402845 100%);
   display: flex;
   justify-content: center;
   padding-top: 50px;
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 `;
 
 export const Content = styled.div`
@@ -51,6 +61,11 @@ export const Content = styled.div`
 
       &:hover {
         background: ${darken(0.12, '#f94d6a')};
+      }
+
+      > svg {
+        color: #fff;
+        animation: ${rotate} 2s linear infinite;
       }
     }
 

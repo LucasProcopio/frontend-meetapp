@@ -24,3 +24,9 @@ export function signFailure() {
     type: '@auth/SIGN_FAILURE',
   };
 }
+
+export function signUpSuccess() {
+  return {
+    type: '@auth/SIGN_UP_SUCCESS',
+  };
+}
