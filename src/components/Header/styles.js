@@ -50,13 +50,13 @@ export const Profile = styled.div`
     height: 42px;
     border: 0;
     border-radius: 4px;
-    background: #f94d6a;
+    background: #d44059;
     color: #fff;
     font-weight: bold;
     transition: background 0.2s ease-in-out;
 
     &:hover {
-      background: ${darken(0.2, '#f94d6a')};
+      background: ${darken(0.15, '#d44059')};
     }
   }
 `;

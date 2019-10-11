@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaSpinner } from 'react-icons/fa';
 
 import * as Yup from 'yup';
 import { signInRequest } from '~/store/modules/auth/actions';
@@ -9,6 +10,7 @@ import { signInRequest } from '~/store/modules/auth/actions';
 import logo from '~/assets/logo.svg';
 
 export default function SignIn() {
+  const loading = useSelector(state => state.auth.loading);
   const dispatch = useDispatch();
 
   const schema = Yup.object({
@@ -32,7 +34,9 @@ export default function SignIn() {
           type="password"
           placeholder="Your secret password"
         />
-        <button type="submit">Submit</button>
+        <button type="submit">
+          {loading ? <FaSpinner size={18} /> : 'Submit'}
+        </button>
         <Link to="/register">Create an account</Link>
       </Form>
     </>

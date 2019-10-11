@@ -3,7 +3,7 @@ import { all, call, takeLatest, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import history from '~/services/history';
 import api from '~/services/api';
-import { signFailure, signInSuccess } from './actions';
+import { signFailure, signInSuccess, signUpSuccess } from './actions';
 
 /**
  * Subscribe user
@@ -17,6 +17,12 @@ export function* signUp({ payload }) {
       password,
       provider: true,
     });
+
+    yield put(signUpSuccess());
+
+    toast.success(
+      `✅ Congratulations ${name} your account was successfully created.`
+    );
 
     history.push('/');
   } catch (error) {
