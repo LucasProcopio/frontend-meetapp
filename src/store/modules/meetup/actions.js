@@ -17,3 +17,23 @@ export function deleteMeetupSuccess(meetupId) {
     payload: { meetupId },
   };
 }
+
+export function newMeetupRequest(meetup) {
+  return {
+    type: '@meetup/NEW_MEETUP_REQUEST',
+    payload: { meetup },
+  };
+}
+
+export function newMeetupSuccess(meetup) {
+  return {
+    type: '@meetup/NEW_MEETUP_SUCCESS',
+    payload: { meetup },
+  };
+}
+
+export function newMeetupFailure() {
+  return {
+    type: '@meetup/NEW_MEETUP_FAILURE',
+  };
+}
