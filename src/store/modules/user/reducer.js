@@ -31,6 +31,12 @@ export default function user(state = INITIAL_STATE, action) {
         draft.meetups = [];
         break;
       }
+      case '@meetup/DELETE_SUCCESS': {
+        draft.meetups = draft.meetups.filter(
+          meetup => meetup.id !== action.payload.meetupId
+        );
+        break;
+      }
       default:
     }
   });
