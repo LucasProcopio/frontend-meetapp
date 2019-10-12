@@ -35,6 +35,7 @@ export const Content = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        border: 0;
         border-radius: 4px;
         color: #fff;
         font-weight: bold;

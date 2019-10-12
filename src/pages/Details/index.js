@@ -1,12 +1,22 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MdEdit, MdDeleteForever, MdPlace, MdEvent } from 'react-icons/md';
 import PropTypes from 'prop-types';
+import { deleteMeetupRequest } from '~/store/modules/meetup/actions';
 
 import { Container, Content, DetailWrapper, Image } from './styles';
 
 export default function Details({ location }) {
   const { meetup } = location.state;
+  const dispatch = useDispatch();
+
+  /**
+   * Delete meetup
+   */
+  function handleDelete(meetupId) {
+    dispatch(deleteMeetupRequest(meetupId));
+  }
 
   return (
     <Container>
@@ -24,10 +34,14 @@ export default function Details({ location }) {
               <MdEdit size={20} />
               Edit
             </Link>
-            <Link className="cancel" to="/meetup/delete">
+            <button
+              type="button"
+              onClick={() => handleDelete(meetup.id)}
+              className="cancel"
+            >
               <MdDeleteForever size={20} />
               Cancel
-            </Link>
+            </button>
           </div>
         </div>
 
@@ -56,6 +70,7 @@ Details.propTypes = {
   location: PropTypes.shape({
     state: PropTypes.shape({
       meetup: PropTypes.shape({
+        id: PropTypes.number,
         title: PropTypes.string,
         banner: PropTypes.shape({
           url: PropTypes.string,
