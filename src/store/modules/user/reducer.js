@@ -13,6 +13,7 @@ export default function user(state = INITIAL_STATE, action) {
         draft.profile = action.payload.user;
         break;
       }
+      case '@user/UPDATE_REQUEST':
       case '@user/GET_MEET_UP_REQUEST': {
         draft.loading = true;
         break;
@@ -22,7 +23,14 @@ export default function user(state = INITIAL_STATE, action) {
         draft.meetups = action.payload.meetups;
         break;
       }
+      case '@user/UPDATE_FAILURE':
       case '@user/GET_MEET_UP_FAILURE': {
+        draft.loading = false;
+        break;
+      }
+      case '@user/UPDATE_SUCCESS': {
+        draft.profile.name = action.payload.user.name;
+        draft.profile.email = action.payload.user.email;
         draft.loading = false;
         break;
       }

@@ -52,7 +52,7 @@ export default function BannerInput() {
               <MdPhotoCamera size={54} />
               <span>Select Image</span>
 
-              <Loader loading={loading}>
+              <Loader loading={loading ? true : undefined}>
                 <FaSpinner size={18} />
               </Loader>
             </>

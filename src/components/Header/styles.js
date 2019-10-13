@@ -17,6 +17,11 @@ export const Content = styled.div`
   img {
     width: 32px;
     height: 32px;
+    transition: all 0.17s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 
