@@ -17,6 +17,26 @@ export function getMeetUpsFailure() {
   };
 }
 
+export function updateUserRequest(user) {
+  return {
+    type: '@user/UPDATE_REQUEST',
+    payload: { user },
+  };
+}
+
+export function updateUserSuccess(user) {
+  return {
+    type: '@user/UPDATE_SUCCESS',
+    payload: { user },
+  };
+}
+
+export function updateUserFailure() {
+  return {
+    type: '@user/UPDATE_FAILURE',
+  };
+}
+
 export function logOut() {
   return {
     type: '@user/LOGOUT',

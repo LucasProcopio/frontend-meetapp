@@ -52,5 +52,9 @@ export default function DatePicker({ name, selectedDate }) {
 
 DatePicker.propTypes = {
   name: PropTypes.string.isRequired,
-  selectedDate: PropTypes.string.isRequired,
+  selectedDate: PropTypes.string,
+};
+
+DatePicker.defaultProps = {
+  selectedDate: null,
 };

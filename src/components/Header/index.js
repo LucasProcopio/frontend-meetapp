@@ -23,7 +23,7 @@ export default function Header() {
     <Container>
       <Content>
         <nav>
-          <Link to="/dashboard">
+          <Link className="header-logo" to="/dashboard">
             <img src={logo} alt="Meet App" />
           </Link>
         </nav>
@@ -32,7 +32,16 @@ export default function Header() {
           <Profile>
             <div>
               <strong>{profile.name}</strong>
-              <Link to="/profile">My Profile</Link>
+              <Link
+                to={{
+                  pathname: '/profile',
+                  state: {
+                    profile,
+                  },
+                }}
+              >
+                My Profile
+              </Link>
             </div>
             <button onClick={handleLogOut} type="button">
               Logout
