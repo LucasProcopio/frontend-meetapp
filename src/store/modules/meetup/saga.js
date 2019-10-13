@@ -23,10 +23,13 @@ export function* delMeetup({ payload }) {
     yield put(deleteMeetupSuccess(meetupId));
 
     history.push('/dashboard');
-  } catch (error) {
-    toast.error(
-      '💩 Error while trying to delete the meetup, please try again 💩'
-    );
+  } catch (e) {
+    const message = e.response
+      ? `💩 ${e.response.data.error} 💩`
+      : '💩 Error while trying to delete the meetup, please try again 💩';
+
+    toast.error(message);
+
     yield put(deleteMeetupFailure());
   }
 }
@@ -34,18 +37,41 @@ export function* delMeetup({ payload }) {
 export function* newMeetup({ payload }) {
   try {
     const { meetup } = payload;
-    console.tron.log(meetup.file_id);
     yield call(api.post, 'meetups', { ...meetup });
 
     toast.success('✅ Meetup successfully created');
 
-    put(newMeetupSuccess(meetup));
+    yield put(newMeetupSuccess());
 
     history.push('/dashboard');
-  } catch (error) {
-    toast.error(
-      '💩 Error while trying to create a new meetup, please try again 💩'
-    );
+  } catch (e) {
+    const message = e.response
+      ? `💩 ${e.response.data.error} 💩`
+      : '💩 Error while trying to create a new meetup, please try again💩';
+
+    toast.error(message);
+
+    yield put(newMeetupFailure());
+  }
+}
+
+export function* updateMeetup({ payload }) {
+  try {
+    const { meetup } = payload;
+    yield call(api.put, `meetups/${meetup.id}`, { ...meetup });
+
+    toast.success('✅ Meetup successfully Updated');
+
+    yield put(newMeetupSuccess());
+
+    history.push('/dashboard');
+  } catch (e) {
+    const message = e.response
+      ? `💩 ${e.response.data.error} 💩`
+      : '💩 Error while trying to update the meetup, please try again 💩';
+
+    toast.error(message);
+
     yield put(newMeetupFailure());
   }
 }
@@ -53,4 +79,5 @@ export function* newMeetup({ payload }) {
 export default all([
   takeLatest('@meetup/DELETE_REQUEST', delMeetup),
   takeLatest('@meetup/NEW_MEETUP_REQUEST', newMeetup),
+  takeLatest('@meetup/UPDATE_MEETUP_REQUEST', updateMeetup),
 ]);

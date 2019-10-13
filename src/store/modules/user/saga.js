@@ -13,11 +13,13 @@ export function* getMeetups() {
       formattedDate: format(parseISO(meetup.date), "MMMM d, 'at 'hh:mm b"),
     }));
     yield put(getMeetUpsSuccess(meetups));
-  } catch (error) {
+  } catch (e) {
     yield put(getMeetUpsFailure());
-    toast.error(
-      'Error while trying to retrieve user meetups, please try again later'
-    );
+    const message = e.response
+      ? `💩 ${e.response.data.error} 💩`
+      : '💩 Error while trying to retrieve user meetups, please try again later 💩';
+
+    toast.error(message);
   }
 }
 

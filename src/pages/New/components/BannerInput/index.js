@@ -1,15 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useField } from '@rocketseat/unform';
+
 import { MdPhotoCamera } from 'react-icons/md';
+import { FaSpinner } from 'react-icons/fa';
 
 import api from '~/services/api';
-import { Container, Image } from './styles';
+import { Container, Image, Loader } from './styles';
 
-export default function BannerInput({ name }) {
-  const { defaultValue, registerField, error } = useField(name);
+export default function BannerInput() {
+  const { defaultValue, registerField, error } = useField('banner');
 
   const [file, setFile] = useState(defaultValue && defaultValue.id);
   const [preview, setPreview] = useState(defaultValue && defaultValue.url);
+  const [loading, setLoading] = useState(false);
   const ref = useRef();
 
   useEffect(() => {
@@ -20,9 +23,13 @@ export default function BannerInput({ name }) {
         path: 'dataset.file',
       });
     }
-  }, [ref, file]); // eslint-disable-line
+  }, [ref.current, file]); // eslint-disable-line
 
+  /**
+   * Handle Banner input change
+   */
   async function handleChange(e) {
+    setLoading(true);
     const data = new FormData();
 
     data.append('file', e.target.files[0]);
@@ -33,9 +40,9 @@ export default function BannerInput({ name }) {
 
     setFile(id);
     setPreview(url);
+    setLoading(false);
   }
 
-  console.tron.log(preview);
   return (
     <Container>
       <label htmlFor="banner">
@@ -44,6 +51,10 @@ export default function BannerInput({ name }) {
             <>
               <MdPhotoCamera size={54} />
               <span>Select Image</span>
+
+              <Loader loading={loading}>
+                <FaSpinner size={18} />
+              </Loader>
             </>
           )}
         </Image>

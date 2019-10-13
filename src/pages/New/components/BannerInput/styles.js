@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -47,5 +47,27 @@ export const Image = styled.div`
     font-size: 20px;
     font-weight: bold;
     margin-top: 15px;
+  }
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Loader = styled.div`
+  display: ${props => (props.loading ? 'flex' : 'none')};
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    margin: 30px auto;
+    color: rgba(255, 255, 255, 0.3);
+    animation: ${rotate} 2s linear infinite;
   }
 `;
