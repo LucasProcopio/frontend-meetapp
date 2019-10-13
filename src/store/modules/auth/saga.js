@@ -25,11 +25,14 @@ export function* signUp({ payload }) {
     );
 
     history.push('/');
-  } catch (error) {
+  } catch (e) {
     yield put(signFailure());
-    toast.error(
-      '💩 Error while trying to subscribe, please make sure you enter your data correctly 💩'
-    );
+
+    const message = e.response
+      ? `💩 ${e.response.data.error} 💩`
+      : '💩 Unexpected error while trying to subscribe, please try again! 💩';
+
+    toast.error(message);
   }
 }
 
@@ -57,10 +60,16 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
+
     history.push('/dashboard');
-  } catch (error) {
+  } catch (e) {
     yield put(signFailure());
-    toast.error('💩 E-mail and or Password incorrect 💩');
+
+    const message = e.response
+      ? `💩 ${e.response.data.error} 💩`
+      : '💩 Unexpected error please try again! 💩';
+
+    toast.error(message);
   }
 }
 

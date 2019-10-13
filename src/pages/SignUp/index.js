@@ -12,7 +12,7 @@ import logo from '~/assets/logo.svg';
 export default function SignIn() {
   const loading = useSelector(state => state.auth.loading);
   const dispatch = useDispatch();
-  console.tron.log('UP', loading);
+
   const schema = Yup.object({
     name: Yup.string().required('Full name required'),
     email: Yup.string()

@@ -21,7 +21,7 @@ export default function Dashboard() {
       <Content>
         <div>
           <strong>My meetups</strong>
-          <Link to="/meetup/new">
+          <Link to="/meetup">
             <MdAddCircleOutline size={20} />
             New meetup
           </Link>

@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MdEdit, MdDeleteForever, MdPlace, MdEvent } from 'react-icons/md';
 import PropTypes from 'prop-types';
-import { deleteMeetupRequest } from '~/store/modules/meetup/actions';
 
+import { deleteMeetupRequest } from '~/store/modules/meetup/actions';
 import { Container, Content, DetailWrapper, Image } from './styles';
 
 export default function Details({ location }) {
@@ -27,7 +27,7 @@ export default function Details({ location }) {
             <Link
               className="edit"
               to={{
-                pathname: '/meetup/edit',
+                pathname: '/meetup',
                 state: { meetup },
               }}
             >

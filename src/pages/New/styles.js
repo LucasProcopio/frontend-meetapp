@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { darken } from 'polished';
 
 export const Container = styled.div`
@@ -66,5 +66,27 @@ export const Container = styled.div`
       font-weight: bold;
       font-size: 18px;
     }
+  }
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Loader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    margin: 0px auto;
+    color: #fff;
+    animation: ${rotate} 2s linear infinite;
   }
 `;
